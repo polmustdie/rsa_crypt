@@ -15,13 +15,13 @@ public class SoloveyStrassenTest implements ISimplicityTest{
         {
             return false;
         }
-        if (n.and(BigInteger.ONE).equals(0)) {
+        if (n.and(BigInteger.ONE).equals(BigInteger.ZERO)) {
             return false;
         }
         if (precision < 0.5 || precision >= 1)
         {
             System.out.println("Error!");
-            throw new Exception("LOX!");
+            throw new Exception("Caught exception");
         }
         double k = Math.log(1 / (1 - precision)) / Math.log(2);
         if (Math.abs(k - (int)k) > 0)

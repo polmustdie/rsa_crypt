@@ -1,5 +1,5 @@
 package org.example;
 
 public enum TestsEnum {
-    FermaTest, SoloveyStrassenTest, MillerRabinTest
+    FERMA_TEST, SOLOVEY_STRASSEN_TEST, MILLER_RABIN_TEST
 }

@@ -12,7 +12,7 @@ public class FermaTest implements ISimplicityTest {
         if (n.compareTo(BigInteger.TWO) < 0) {
             return false;
         }
-        if (n.and(BigInteger.ONE).equals(0)) {
+        if (n.and(BigInteger.ONE).equals(BigInteger.ZERO)) {
             return false;
         }
         if (precision < 0.5 || precision >= 1) {

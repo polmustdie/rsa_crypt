@@ -19,7 +19,7 @@ public class MillerRabinTest implements ISimplicityTest{
         if (precision < 0.5 || precision >= 1)
         {
             System.out.println("Error!");
-            throw new Exception("LOX!");
+            throw new Exception("Error!");
         }
         double k = Math.log(1 / (1 - precision)) / Math.log(2);
         if (Math.abs(k - (int)k) > 0)
@@ -27,7 +27,7 @@ public class MillerRabinTest implements ISimplicityTest{
             k++;
             k = Math.round(k);
         }
-        // Разложение числа на вид n-1 = (2^s) * t
+        // decomposition to  n-1 = (2^s) * t
         BigInteger t = n.subtract(BigInteger.ONE);
         int s = 0;
         while (t.mod(BigInteger.TWO).equals(BigInteger.ZERO))
@@ -36,7 +36,7 @@ public class MillerRabinTest implements ISimplicityTest{
             s++;
         }
 
-        // Проверка k раундов теста Миллера-Рабина
+        // check k rounds of miller rabin
         for (int i = 0; i < k; i++)
         {
             BigInteger a = getRandomBase(n);
