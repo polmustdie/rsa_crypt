@@ -18,6 +18,7 @@ public class Key {
     static BigInteger e;
     static BigInteger n;
     static BigInteger d;
+    final int CRITERIA_WIENER = 256;
 
 
     public void keyGenerator(int bitLength) throws Exception {
@@ -32,23 +33,35 @@ public class Key {
         }
         Random random = new Random(System.currentTimeMillis());
         BigInteger p;
-        do {
-            p = new BigInteger(bitLength, random);
-        }
-        while (!simplicityTest.test(p, 0.95) || p.bitLength() != bitLength);
-
         BigInteger q;
-        do {
-            q = new BigInteger(bitLength, random);
-        }
-        while (!simplicityTest.test(q, 0.95) || q.bitLength() != bitLength);
+        d = BigInteger.ZERO;
+//        while (d.bitLength() < CRITERIA_WIENER) {
+//            do {
+                p = new BigInteger("239");
+//                p = new BigInteger(bitLength/2, random);
 
-//        BigInteger p2 = BigInteger.probablePrime(bitLength / 2, new Random());
-        n = p.multiply(q);
-        BigInteger phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
-        e = BigInteger.valueOf(65537L);
+//            }
+//            while (!simplicityTest.test(p, 0.95) || p.bitLength() != bitLength/2);
 
-        d = solve(phi, e);
+
+//            do {
+            q = new BigInteger("379");
+//                q = new BigInteger(bitLength/2, random);
+//            }
+//            while (!simplicityTest.test(q, 0.95) || q.bitLength() != bitLength/2);
+
+
+            n = p.multiply(q);
+
+            BigInteger phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
+            e = BigInteger.valueOf(17993L);
+//        e = BigInteger.valueOf(65537);
+
+            Key.d = solve(phi, e);
+//            Key.d = e.modInverse(phi);
+        System.out.println("REAL D " + d);
+            System.out.println("REAL N "+n);
+//        }
     }
     private static BigInteger solve(BigInteger a, BigInteger b)
     {
